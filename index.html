@@ -17,41 +17,43 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div id="input" class="input-section half-width">
-                    <input class="form-control" type="text" name="text">
-                    <div class="numbers">
-                        <div class="calc-body">
-                            <div class="calc-button-row">
-                              <div class="button">7</div>
-                              <div class="button">8</div>
-                              <div class="button">9</div>
+                <form name="form">
+                    <div class="input-section half-width">
+                        <input class="form-control" type="text" name="text">
+                        <div class="numbers">
+                            <div class="calc-body">
+                                <div class="calc-button-row">
+                                  <div class="button" onclick="insert(7)">7</div>
+                                  <div class="button" onclick="insert(8)">8</div>
+                                  <div class="button" onclick="insert(9)">9</div>
+                                </div>
+                                <div class="calc-button-row">
+                                  <div class="button" onclick="insert(4)">4</div>
+                                  <div class="button" onclick="insert(5)">5</div>
+                                  <div class="button" onclick="insert(6)">6</div>
+                                </div>
+                                <div class="calc-button-row">
+                                  <div class="button" onclick="insert(1)">1</div>
+                                  <div class="button" onclick="insert(2)">2</div>
+                                  <div class="button" onclick="insert(3)">3</div>
+                                </div>
+                                <div class="calc-button-row">
+                                    <div class="button" onclick="back()"><</div>
+                                    <div class="button" onclick="insert(0)">0</div>
+                                    <div class="button" onclick="clean()">C</div>
+                                </div>
+                                <div>
+                                    <button id="submitBtn" type="submit" class="submit-btn">Submit</button>
+                                    <p class="action-left">3 try left</p>
+                                </div>
                             </div>
-                            <div class="calc-button-row">
-                              <div class="button">4</div>
-                              <div class="button">5</div>
-                              <div class="button">6</div>
-                            </div>
-                            <div class="calc-button-row">
-                              <div class="button">1</div>
-                              <div class="button">2</div>
-                              <div class="button">3</div>
-                            </div>
-                            <div class="calc-button-row">
-                                <div class="button"><</div>
-                                <div class="button">0</div>
-                                <div class="button">C</div>
-                            </div>
-                            <div>
-                                <button type="submit" class="submit-btn">Submit</button>
-                                <p class="action-left">3 try left</p>
-                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </form>
         </div>
         <div class="notify-section">
             <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id="success" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
@@ -59,13 +61,36 @@
         document.getElementById('generate').addEventListener('click', function(){
             const pin = getRandomInt(1000, 9999);
             document.getElementById('textview').value= pin;
+            console.log(pin);
+            return pin;
         })
-
         function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
+        function insert(num){
+            document.form.text.value = document.form.text.value + num;
+            console.log(document.form.text.value);
+            return document.form.text.value;
+        }
+
+        function clean(){
+            document.form.text.value = "";
+        }
+
+        function back(){
+            var exp = document.form.text.value;
+            document.form.text.value = exp.substring(0,exp.length-1);
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function(){
+            if(document.getElementById('textview').value==document.form.text.value){
+                const pinMatch = document.getElementById("success");
+                pinMatch.style.display = "block";
+            }
+        })
     </script>
 </body>
 </html>
