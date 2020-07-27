@@ -52,7 +52,7 @@
                 </form>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="fail" class="notify">❌ Pin Didn't Match, Please try again</p>
             <p id="success" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
@@ -61,8 +61,6 @@
         document.getElementById('generate').addEventListener('click', function(){
             const pin = getRandomInt(1000, 9999);
             document.getElementById('textview').value= pin;
-            console.log(pin);
-            return pin;
         })
         function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -73,7 +71,6 @@
         function insert(num){
             document.form.text.value = document.form.text.value + num;
             console.log(document.form.text.value);
-            return document.form.text.value;
         }
 
         function clean(){
@@ -89,6 +86,10 @@
             if(document.getElementById('textview').value==document.form.text.value){
                 const pinMatch = document.getElementById("success");
                 pinMatch.style.display = "block";
+            }
+            else{
+                const pinMisMatch = document.getElementById("fail");
+                pinMisMatch.style.display = "block";
             }
         })
     </script>
