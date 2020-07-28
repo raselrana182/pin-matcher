@@ -44,7 +44,7 @@
                                 </div>
                                 <div>
                                     <button id="submitBtn" type="button" class="submit-btn">Submit</button>
-                                    <p class="action-left"> 3 try left</p>
+                                    <p class="action-left"> <span id="wrongCount">3</span> try left</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,6 @@
 
         function insert(num){
             document.form.text.value = document.form.text.value + num;
-            console.log(document.form.text.value);
         }
 
         function clean(){
