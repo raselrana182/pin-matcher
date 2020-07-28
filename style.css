@@ -111,4 +111,9 @@ color: #E0B612;
 #fail{
     display: none;
 }
-
+#right{
+    background-color: green;
+}
+#wrong{
+    background-color: red;
+}

@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <form name="form">
                     <div class="input-section half-width">
-                        <input class="form-control" type="text" name="text">
+                        <input id="display" class="form-control" type="text" name="text">
                         <div class="numbers">
                             <div class="calc-body">
                                 <div class="calc-button-row">
@@ -43,8 +43,8 @@
                                     <div class="button" onclick="clean()">C</div>
                                 </div>
                                 <div>
-                                    <button id="submitBtn" type="submit" class="submit-btn">Submit</button>
-                                    <p class="action-left">3 try left</p>
+                                    <button id="submitBtn" type="button" class="submit-btn">Submit</button>
+                                    <p class="action-left"> 3 try left</p>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +52,8 @@
                 </form>
         </div>
         <div class="notify-section">
-            <p id="fail" class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p id="success" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id="fail" class="notify"><span id="wrong">❌</span> Pin Didn't Match, Please try again</p>
+            <p id="success" class="notify"> <span id="right">✅</span>  Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
@@ -61,6 +61,9 @@
         document.getElementById('generate').addEventListener('click', function(){
             const pin = getRandomInt(1000, 9999);
             document.getElementById('textview').value= pin;
+            clean();
+            notify();
+
         })
         function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -75,11 +78,18 @@
 
         function clean(){
             document.form.text.value = "";
+            notify();
         }
 
         function back(){
             var exp = document.form.text.value;
             document.form.text.value = exp.substring(0,exp.length-1);
+            notify();
+        }
+
+        function notify(){
+            document.getElementById('success').style.display = "none";
+            document.getElementById('fail').style.display = "none";
         }
 
         document.getElementById('submitBtn').addEventListener('click', function(){
@@ -92,6 +102,7 @@
                 pinMisMatch.style.display = "block";
             }
         })
+
     </script>
 </body>
 </html>
