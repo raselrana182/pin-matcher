@@ -92,10 +92,17 @@
         }
 
         document.getElementById('submitBtn').addEventListener('click', function(){
-            if(document.getElementById('textview').value==document.form.text.value){
+            if(document.getElementById('textview').value == ""){
+                alert('Generate a pin number');
+            }
+            else if(document.form.text.value== ""){
+                alert('Enter numbers');
+            }
+            else if(document.getElementById('textview').value==document.form.text.value){
                 const pinMatch = document.getElementById("success");
                 pinMatch.style.display = "block";
             }
+            
             else{
                 const pinMisMatch = document.getElementById("fail");
                 pinMisMatch.style.display = "block";
